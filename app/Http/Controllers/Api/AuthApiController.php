@@ -40,11 +40,7 @@ class AuthApiController extends Controller
             'user_id'   => $user->id
         ]);
 
-        $detail = User::where('id', $user->id)
-                    ->get()
-                    ->map(function ($detail){
-                        return FormatUserHelper::formatResultAuth($detail);                        
-                    });
+        $detail = FormatUserHelper::resultUser($user->id);
 
         $msg = "Registrasi Berhasil";
         return MessageHelper::resultAuth(true, $msg, $detail);
@@ -68,11 +64,7 @@ class AuthApiController extends Controller
 
             if(password_verify($request->password, $user->password)){
 
-                $detail = User::where('id', $user->id)
-                        ->get()
-                        ->map(function ($detail){
-                            return FormatUserHelper::formatResultAuth($detail);              
-                        });
+                $detail = FormatUserHelper::resultUser($user->id);
 
                 $msg = "Selamat Datang, $user->name";
                 return MessageHelper::resultAuth(true, $msg, $detail);

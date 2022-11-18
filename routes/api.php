@@ -34,4 +34,6 @@ Route::controller(AuthApiController::class)->group(function(){
 
 Route::controller(MentorApiController::class)->group(function(){
     Route::get('/mentor', 'mentor');
+    Route::post('/add_mentor', 'addMentor');
+    Route::put('/update_mentor/{username}', 'updateMentor');
 });
