@@ -81,7 +81,11 @@ Route::prefix('p')->middleware(['auth','isPeserta','blokir'])->group(function(){
 });
 // End Akses Peserta
 
-
+// Route Belajar Get Data Api yang method nya Get dari api luar
+Route::get('/doa_harian', [App\Http\Controllers\Api\AdditionalController::class, 'getDoa']);
+Route::get('/registrasi', [App\Http\Controllers\Api\AdditionalController::class, 'regis']);
+Route::get('/login', [App\Http\Controllers\Api\AdditionalController::class, 'login']);
+Route::post('/proses-registrasi', [App\Http\Controllers\Api\AdditionalController::class, 'prosesRegis'])->name('regis.aja');
 
 
 // Route::get('/', function () {
