@@ -14,8 +14,14 @@
 
     <h3 class="text-center mt-5 mb-4">Login Warung</h3>
     <div class="container d-flex justify-content-center">
-        <form action="{{route('regis.aja')}}" method="POST">
+        <form action="{{route('signin.aja')}}" method="POST">
           @csrf
+
+          @if(Session::get('error'))
+          <div class="alert alert-danger" role="alert">
+            {{ Session::get('error') }}
+          </div>
+          @endif
 
           @if(Session::get('ok'))
           <div class="alert alert-success" role="alert">

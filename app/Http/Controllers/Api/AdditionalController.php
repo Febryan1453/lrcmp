@@ -28,6 +28,23 @@ class AdditionalController extends Controller
         return view('additional.login');
     }
 
+    public function prosesLogin(Request $request)
+    {
+        $respon = Http::post("https://warungbangkrut14.herokuapp.com/api/login?email={$request->email}&password={$request->password}");
+        // $respon = Http::post("https://warungbangkrut14.herokuapp.com/api/login", $request->all());
+        $data = json_decode($respon);
+
+        if($data->status == 0){
+            return redirect()->back()->with('error',$data->message);
+        }else{
+            
+            return view('additional.welcome',[
+                'data' => $data
+            ]);
+
+        }
+    }
+
     public function prosesRegis(Request $request)
     {
         $respon = Http::post("https://warungbangkrut14.herokuapp.com/api/registrasi", $request->all());
